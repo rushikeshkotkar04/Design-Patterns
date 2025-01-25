@@ -19,45 +19,53 @@ class Student {
         return "Name: " + this.name + "Rollnumber: " + this.rollNumber + "Percentage: " + this.percentage;
     }
 
-
-}
-
-class CustomException extends RuntimeException {
-
-    public CustomException(String msg) {
-        super(msg);
+    @Override
+    public int hashCode() {
+        return name.hashCode() + Integer.hashCode(rollNumber) + Double.hashCode(percentage);
     }
-}
 
-class Prac {
-
-    public void check(int n) {
-        if (n == 0) {
-            throw new CustomException("Here we threw the exception");
+    @Override
+    public boolean equals(Object obj) {
+        Student s1 = (Student) obj;
+        if (s1 == null || this == null) {
+            return false;
         }
+        if (this.rollNumber == s1.rollNumber
+                && this.name.equals(s1.name)
+                && this.percentage == s1.percentage) {
+            return true;
+        }
+        return false;
     }
 }
+
+
+//
+//class CustomException extends RuntimeException {
+//
+//    public CustomException(String msg) {
+//        super(msg);
+//    }
+//}
+
+//class Prac {
+//
+//    public void check(int n) {
+//        if (n == 0) {
+//            throw new CustomException("Here we threw the exception");
+//        }
+//    }
+//}
+
 
 public class Practice {
 
     public static void main(String[] args) {
-        Prac p = new Prac();
-        try {
-            p.check(0);
-        } catch (CustomException e) {
-            System.out.println(e);
-        }
 
-
-//        List<Integer> stack = new Stack<>();
-//        Queue<Integer> que = new ArrayDeque<>();
-//        List<Integer> l1 = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
-//        PriorityQueue<Integer> pq = new PriorityQueue<>();
-//        List<Integer> linkedList = new LinkedList<>(l1);
-//        HashMap<Integer, List<Integer>> hashmap = new HashMap<>();
-//        List<Integer> list = new ArrayList<>();
-//        hashmap.put(1, new ArrayList<>());
-//        hashmap.put(2, hashmap.getOrDefault(2, List.of(1)));
+        Student s1 = new Student("Rushikesh", 1, 35.35);
+        Student s2 = new Student("Rushikesh", 1, 35.35);
+        System.out.println(s1.hashCode());
+        System.out.println(s2.hashCode());
     }
 }
 
