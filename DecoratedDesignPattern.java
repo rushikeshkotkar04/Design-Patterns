@@ -62,5 +62,6 @@ public class DecoratedDesignPattern {
     public static void main(String[] args) {
         Coffee coffee = new DecorateWithXyz(new DecorateWithMilk(new NormalCoffee()));
         System.out.println(coffee.cost());
+        
     }
 }
